@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 /**
  * Given a number, replace this number with
  * the sum of its digits until we get to a one digit number.
@@ -10,8 +11,11 @@
  * For 91, the result should be 1 (9 + 1 = 10, 1 + 0 = 1)
  *
  */
-function getSumOfDigits(/* n */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(n) {
+  if (String(n).length <= 1) {
+    return +n;
+  } else {
+    return getSumOfDigits(String(n).split('').reduce((sum, el) => sum + +el, 0));
+  }
 }
-
 module.exports = getSumOfDigits;

@@ -1,3 +1,4 @@
+/* eslint-disable no-else-return */
 /**
  * There's a list of file, since two files cannot have equal names,
  * the one which comes later will have a suffix (k),
@@ -13,8 +14,20 @@
  * the output should be ["file", "file(1)", "image", "file(1)(1)", "file(2)"]
  *
  */
-function renameFiles(/* names */) {
-  throw new Error('Not implemented');
+function renameFiles(input) {
+  const obj = {
+  };
+  const output = input.map((el) => {
+    if (obj[el]) {
+      obj[`${el}(${obj[el]})`] = 1;
+      return `${el}(${obj[el]++})`;
+    } else {
+      obj[el] = 1;
+      return el;
+    }
+  });
+
+  return output;
 }
 
 module.exports = renameFiles;

@@ -1,3 +1,8 @@
+/* eslint-disable max-len */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-void */
+/* eslint-disable no-cond-assign */
+/* eslint-disable no-underscore-dangle */
 /**
  * In the popular Minesweeper game you have a board with some mines and those cells
  * that don't contain a mine have a number in it that indicates the total number of mines
@@ -21,8 +26,36 @@
  *  [1, 1, 1]
  * ]
  */
-function minesweeper(/* matrix */) {
-  throw new Error('Not implemented');
+function minesweeper(matrix) {
+  function getCell(row, col) {
+    if (row < 0 || col < 0) return 0;
+    if (row >= matrix.length) return 0;
+    if (col >= matrix[row].length) return 0;
+    if (matrix[row][col] === true) return 1;
+    return 0;
+  }
+  const line = [];
+  const result = [];
+  for (let row = 0; row < matrix.length; row++) {
+    for (let col = 0; col < matrix[row].length; col++) {
+      let bombs = 0;
+      bombs += getCell(row - 1, col - 1);
+      bombs += getCell(row - 1, col);
+      bombs += getCell(row - 1, col + 1);
+
+      bombs += getCell(row, col - 1);
+      bombs += getCell(row, col + 1);
+
+      bombs += getCell(row + 1, col - 1);
+      bombs += getCell(row + 1, col);
+      bombs += getCell(row + 1, col + 1);
+
+      if (bombs === 0) bombs++;
+      line.push(bombs);
+    }
+    result.push(line.splice(0, `${matrix.length}`));
+  }
+  return result;
 }
 
 module.exports = minesweeper;
