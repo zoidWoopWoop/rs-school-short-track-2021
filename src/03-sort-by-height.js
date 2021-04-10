@@ -19,7 +19,7 @@ function sortByHeight(arr) {
   }
   const result = arr.filter((el) => el !== -1).sort((a, b) => a - b);
   for (let i = 0; i < reservePosition.length; i++) {
-    sorted.splice(reservePosition[i], 0, -1);
+    result.splice(reservePosition[i], 0, -1);
   }
   return result;
 }

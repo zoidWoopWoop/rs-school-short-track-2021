@@ -16,7 +16,6 @@
  *   this.next = null;
  * }
  */
-const ListNode = require('../extensions/list-node');
 
 function removeKFromList(l, k) {
   let obj = l;
