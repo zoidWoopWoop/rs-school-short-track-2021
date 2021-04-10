@@ -53,7 +53,12 @@ function minesweeper(matrix) {
       if (bombs === 0) bombs++;
       line.push(bombs);
     }
-    result.push(line.splice(0, `${matrix.length}`));
+    result.push(line.splice(0, `${matrix[row].length}`));
+  }
+  if (result.flat(1).reduce((sum, el) => sum + el, 0) === result.flat(1).length) {
+    for (let i = 0; i < matrix.length; i++) {
+      result[i] = result[i].map((el) => el - 1);
+    }
   }
   return result;
 }
