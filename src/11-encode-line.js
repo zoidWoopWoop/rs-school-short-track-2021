@@ -10,18 +10,19 @@
  */
 
 function encodeLine(str) {
-  const obj = {
-  };
-  const arr = str.split('');
-
-  for (let i = 0; i < arr.length; i++) {
-    if (!obj[arr[i]]) {
-      obj[arr[i]] = 0;
+  let result = '';
+  let count = 1;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === str[i + 1]) {
+      count++;
+    } else if (count === 1) {
+      result += str[i];
+    } else {
+      result += count + str[i];
+      count = 1;
     }
-    obj[arr[i]] += 1;
   }
-  return Object.entries(obj)
-    .reduce((result, [key, value]) => (value === 1 ? result + key : result + value + key), '');
+  return result;
 }
 
 module.exports = encodeLine;
